@@ -9,8 +9,8 @@ RUN opam update
 COPY pkg-list /root
 RUN opam install -y odig $(cat pkg-list) || true
 
-RUN eval $(opam env) \ &&
+RUN eval $(opam env) && \
   odig odoc --odoc-theme odig.gruvbox.dark
 
-CMD eval $(opam env) \ &&
+CMD eval $(opam env) && \
   netlify deploy --prod --dir "$(odig cache path)"/html
