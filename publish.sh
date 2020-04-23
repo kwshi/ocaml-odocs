@@ -1,5 +1,3 @@
 #!/bin/sh
 
-echo hi
-
-echo $TEST_VAR
+netlify deploy --prod "$(odig cache path)"/html
