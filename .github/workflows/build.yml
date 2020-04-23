@@ -1,0 +1,12 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish
+        uses: ./.github/actions/publish
+        env:
+          TEST_VAR: hello there
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
