@@ -4,6 +4,8 @@ RUN apk add --upgrade m4
 RUN apk add npm
 RUN npm install -g netlify-cli
 
+RUN ["opam", "init", "-n"]
+
 RUN opam update
 
 COPY pkg-list /root
