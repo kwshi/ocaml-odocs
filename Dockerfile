@@ -11,5 +11,4 @@ RUN opam install -y odig $(cat pkg-list) || true
 
 RUN eval $(opam env) && odig odoc --odoc-theme=odig.gruvbox.dark
 
-COPY publish.sh /root
-ENTRYPOINT ["/root/publish.sh"]
+RUN eval $(opam env) && netlify deploy --prod "$(odig cache path)"/html
