@@ -14,7 +14,7 @@ jobs:
       - name: init opam
         run: opam init --no-setup
       - name: install opkgs
-        run: opam install $(cat pkg-list)
+        run: opam install odig $(cat pkg-list)
       - name: build
         run: |
           eval $(opam env)
