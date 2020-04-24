@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: update
-        run: apt-get update
+        run: sudo apt-get update
       - name: install
-        run: apt-get install -y m4 ocaml
+        run: sudo apt-get install -y m4 ocaml
       - name: checkout
         uses: actions/checkout@v2
       - name: install opkgs
