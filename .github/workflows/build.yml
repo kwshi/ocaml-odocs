@@ -16,7 +16,9 @@ jobs:
       - name: install opkgs
         run: opam install $(cat pkg-list)
       - name: build
-        run: odig odoc --odoc-theme=odig.gruvbox.dark
+        run: |
+          eval $(opam env)
+          odig odoc --odoc-theme=odig.gruvbox.dark
       - name: publish
         run: netlify deploy --prod --dir \"$(odig cache path)\"/html
 
