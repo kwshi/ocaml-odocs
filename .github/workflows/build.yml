@@ -11,6 +11,8 @@ jobs:
         run: sudo apt-get install -y m4 opam
       - name: checkout
         uses: actions/checkout@v2
+      - name: init opam
+        run: opam init --no-setup
       - name: install opkgs
         run: opam install $(cat pkg-list)
       - name: build
