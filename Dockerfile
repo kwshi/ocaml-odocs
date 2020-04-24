@@ -1,12 +1,12 @@
-FROM akabe/ocaml:latest
+FROM ocaml/opam2
 
-RUN apk add --upgrade m4
-RUN apk add npm
-RUN npm install -g netlify-cli
+RUN ["sudo", "apt-get", "update"]
+RUN ["sudo", "apt-get", "install", "-y", "m4", "npm"]
+RUN ["npm", "install", "-g", "netlify-cli"]
 
 RUN ["opam", "init", "-n"]
 
-RUN opam update
+RUN ["opam", "update"]
 
 COPY pkg-list /root
 RUN opam install -y odig $(cat pkg-list) || true

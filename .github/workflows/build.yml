@@ -1,30 +1,12 @@
-name: Build
+name: main
 on: [push]
 jobs:
-  build:
-    name: Build docs
+  main:
+    name: main
     runs-on: ubuntu-latest
     steps:
-      - name: update
-        run: sudo apt-get update
-      - name: install
-        run: sudo apt-get install -y m4 opam
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: init opam
-        run: opam init --no-setup
-      - name: install opkgs
-        run: opam install odig $(cat pkg-list)
-      - name: build
-        run: |
-          eval $(opam env)
-          odig odoc --odoc-theme=odig.gruvbox.dark
-      - name: publish
-        run: netlify deploy --prod --dir \"$(odig cache path)\"/html
-
-#      - name: publish
-#        uses: ./
-#        env:
-#          TEST_VAR: hello there
-#          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-#          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: main
+        uses: ./
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
