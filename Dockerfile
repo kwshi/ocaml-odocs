@@ -1,11 +1,11 @@
-FROM ocaml/opam2
+FROM alpine:3
 
-RUN ["sudo", "apt-get", "update"]
-RUN ["sudo", "apt-get", "install", "-y", "m4", "npm"]
+RUN ["apk", "update"]
+RUN ["apk", "upgrade"]
+RUN ["apk", "add", "-u", "musl-dev", "m4", "make", "npm", "opam"]
 RUN ["npm", "install", "-g", "netlify-cli"]
 
-RUN ["opam", "init", "-n"]
-
+RUN ["opam", "init", "--no-setup", "--disable-sandboxing"]
 RUN ["opam", "update"]
 
 COPY pkg-list /root
