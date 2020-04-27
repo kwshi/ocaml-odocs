@@ -1,0 +1,4 @@
+name: main
+runs:
+  using: docker
+  image: Dockerfile

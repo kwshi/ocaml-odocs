@@ -1,6 +1,6 @@
 angstrom
-base
 core
+base
 containers
 dune
 lwt
