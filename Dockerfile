@@ -19,4 +19,5 @@ RUN eval $(opam env) \
   $(cat /root/pkg-list) \
   || true
 
-CMD netlify deploy --prod --dir "$(eval $(opam env) && odig cache path)"/html
+COPY publish.sh /root
+ENTRYPOINT ["/root/publish.sh"]
