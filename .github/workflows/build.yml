@@ -5,6 +5,8 @@ jobs:
     name: main
     runs-on: ubuntu-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: main
         uses: ./
         env:
