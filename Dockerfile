@@ -19,5 +19,4 @@ RUN eval $(opam env) \
   $(cat /root/pkg-list) \
   || true
 
-CMD eval $(opam env) && \
-  netlify deploy --prod --dir "$(odig cache path)"/html
+CMD netlify deploy --prod --dir "$(eval $(opam env) && odig cache path)"/html
