@@ -7,8 +7,33 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: main
-        uses: ./
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: install prereqs
+        run: |
+          apt-get update
+          apt-get upgrade -y
+          apt-get install -y opam m4 make
+          npm install -g netlify
+      - name: setup opam
+        run: |
+          rm -rf ~/.opam
+          opam init --auto-setup
+          opam update
+      - name: install odig
+        run: |
+          opam install -y odig
+      - name: install opam packages
+        run: |
+          opam install -y $(cat pkg-list)
+      - name: build docs
+        run: |
+          odig odoc --theme odig.gruvbox.dark $(cat pkg-list)
+      - name: publish
+        run: |
+          netlify deploy --prod --dir "$(odig cache path)"/html
+
+
+      #- name: main
+      #  uses: ./
+      #  env:
+      #    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #    NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
