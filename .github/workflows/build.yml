@@ -26,6 +26,7 @@ jobs:
           opam install -y $(cat pkg-list)
       - name: build docs
         run: |
+          opam --version
           eval $(opam env)
           odig odoc --theme odig.gruvbox.dark $(cat pkg-list)
       - name: publish
