@@ -11,7 +11,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get upgrade -y
-          sudo apt-get install -y opam2 m4 make
+          sudo apt-get install -y opam m4 make
           sudo npm install -g netlify
       - name: setup opam
         run: |
@@ -27,7 +27,7 @@ jobs:
       - name: build docs
         run: |
           opam --version
-          eval $(opam env)
+          eval $(opam config env)
           odig odoc --theme odig.gruvbox.dark $(cat pkg-list)
       - name: publish
         run: |
