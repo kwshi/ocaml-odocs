@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@v2
       - name: install prereqs
         run: |
-          apt-get update
-          apt-get upgrade -y
-          apt-get install -y opam m4 make
-          npm install -g netlify
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          sudo apt-get install -y opam m4 make
+          sudo npm install -g netlify
       - name: setup opam
         run: |
           rm -rf ~/.opam
