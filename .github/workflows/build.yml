@@ -12,7 +12,7 @@ jobs:
           sudo apt-get update
           sudo apt-get upgrade -y
           sudo apt-get install -y opam m4 make
-          sudo npm install -g netlify
+          sudo npm install -g netlify-cli
       - name: setup opam
         run: |
           rm -rf ~/.opam
