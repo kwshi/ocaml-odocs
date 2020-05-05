@@ -31,7 +31,7 @@ jobs:
           odig odoc $(cat pkg-list)
       - name: publish
         run: |
-          eval $(opam env)
+          eval $(opam config env)
           netlify deploy --prod --dir "$(odig cache path)"/html
 
 
