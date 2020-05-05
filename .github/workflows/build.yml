@@ -28,7 +28,7 @@ jobs:
         run: |
           opam --version
           eval $(opam config env)
-          odig odoc --odoc-theme odig.gruvbox.dark $(cat pkg-list)
+          odig odoc $(cat pkg-list)
       - name: publish
         run: |
           eval $(opam env)
