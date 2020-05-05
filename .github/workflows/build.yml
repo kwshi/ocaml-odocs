@@ -30,6 +30,9 @@ jobs:
           eval $(opam config env)
           odig odoc $(cat pkg-list)
       - name: publish
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         run: |
           eval $(opam config env)
           netlify deploy --prod --dir "$(odig cache path)"/html
